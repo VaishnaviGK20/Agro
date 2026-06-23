@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up | Agro Assist{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<section class="auth-page">
+    <div class="auth-card">
+        <h1>Create your account</h1>
+        <p>Register with email OTP verification.</p>
+
+        {% if msg %}
+        <div class="alert alert-error">{{ msg }}</div>
+        {% endif %}
+
+        <form method="POST" onsubmit="return formValidation()">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Email</label>
+                <input type="email" name="username" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Phone number</label>
+                <input type="text" name="phoneNumber" id="phoneNumber" pattern="^[0-9]{10}$" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select name="category" id="category" required>
+                    <option value="">Select category</option>
+                    <option value="Seller">Seller / Farmer</option>
+                    <option value="Customer">Customer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Gender</label>
+                <label><input type="radio" name="gender" value="male" required> Male</label>
+                <label><input type="radio" name="gender" value="female"> Female</label>
+                <label><input type="radio" name="gender" value="other"> Other</label>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label for="Cpassword">Confirm password</label>
+                <input type="password" name="Cpassword" id="Cpassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Sign Up</button>
+        </form>
+
+        <p style="margin-top:1rem;">Already registered? <a href="{% url 'login' %}">Sign in</a></p>
+    </div>
+</section>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block extra_js %}
+<script>
+function formValidation() {
+    const password = document.getElementById('password').value;
+    const confirm = document.getElementById('Cpassword').value;
+    const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!pattern.test(password)) {
+        alert('Password must be 8+ chars with upper, lower, number, and special character.');
+        return false;
+    }
+    if (password !== confirm) {
+        alert('Passwords do not match.');
+        return false;
+    }
+    return true;
+}
+</script>
+{% endblock %}

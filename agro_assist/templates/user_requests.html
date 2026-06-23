@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}User Requests | Agro Assist{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Contact requests</h1>
+        <div class="order-list">
+            {% for req in requests %}
+            <div class="order-item">
+                <div>
+                    <strong>{{ req.yourname }}</strong>
+                    <div class="meta">{{ req.email }} | {{ req.tel }}</div>
+                    <div>{{ req.message }}</div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="panel">No requests yet.</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

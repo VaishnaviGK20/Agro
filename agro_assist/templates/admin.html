@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Panel | Agro Assist{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Admin panel</h1>
+        <div class="feature-grid">
+            <a class="feature-card" href="{% url 'admin_dashboard' %}"><h3>User dashboard</h3><p>View farmers and customers.</p></a>
+            <a class="feature-card" href="{% url 'view_requests' %}"><h3>Contact requests</h3><p>Read customer queries.</p></a>
+            <a class="feature-card" href="{% url 'display_tables' %}"><h3>Orders & items</h3><p>Review purchases and listings.</p></a>
+        </div>
+    </div>
+</section>
+{% endblock %}

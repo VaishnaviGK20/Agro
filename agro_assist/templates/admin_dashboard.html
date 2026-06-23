@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard | Agro Assist{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Users overview</h1>
+        <div class="feature-grid">
+            <div class="panel">
+                <h3>Farmers ({{ farmers|length }})</h3>
+                <ul>
+                    {% for farmer in farmers %}
+                    <li>{{ farmer.username }} — {{ farmer.phoneNumber }}</li>
+                    {% empty %}
+                    <li>No farmers registered.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="panel">
+                <h3>Customers ({{ customers|length }})</h3>
+                <ul>
+                    {% for customer in customers %}
+                    <li>{{ customer.username }} — {{ customer.phoneNumber }}</li>
+                    {% empty %}
+                    <li>No customers registered.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Order Placed | Agro Assist{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container" style="max-width:620px; text-align:center;">
+        <div class="panel">
+            <h1 class="section-title">Thank you!</h1>
+            <p>Your order has been placed successfully. A confirmation email has been sent if email is configured.</p>
+            <div class="hero-actions" style="justify-content:center;">
+                <a href="{% url 'seller' %}" class="btn btn-primary">Continue shopping</a>
+                <a href="{% url 'order_history' %}" class="btn btn-secondary">View orders</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

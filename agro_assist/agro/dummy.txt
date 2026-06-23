@@ -1,0 +1,103 @@
+ if(product_name not in list_of_items):
+            item(name=product_name,descrption=product_descrption,price=price)
+            return HttpResponseRedirect('/seller')
+        else:
+            return render(req,'home1.html',{'msg':'product alredy exist'})
+
+
+            <!--SECTION2-->
+<section class="section2">
+<table>
+<tr>
+<td>
+<h1 class="title">What's Inside the BOX Every Month</h1>
+<ul>
+<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+</ul>
+<a href="#" class="btn1">CHECK YOUR BOX</a>
+</td>
+<td>
+<img src="https://i.ibb.co/tKx7srb/01.png" class="inline-photo show-on-scroll" alt="HOW WE WORK">
+</td>
+</tr>
+</table>
+</section>
+
+
+
+<!--DETAIL_1-->
+<li class="inline-photo2 show-on-scroll2">
+<h3>MOONG DAL</h3>
+<p>Nutritional Value/30gms</p>
+<a href="#" class="btn2">View Details</a>
+</li>
+<!--DETAIL_2-->
+<li class="inline-photo2 show-on-scroll2">
+<h3>MOONG DAL</h3>
+<p>Nutritional Value/30gms</p>
+<a href="#" class="btn2">View Details</a>
+</li>
+<!--DETAIL_3-->
+<li class="inline-photo2 show-on-scroll2">
+<h3>MOONG DAL</h3>
+<p>Nutritional Value/30gms</p>
+<a href="#" class="btn2">View Details</a>
+</li>
+</ul>
+</td>
+<td>
+<div class="card inline-photo show-on-scroll">
+<div class="card_part card_part-one"></div>
+<!-- Photo 2 -->
+<div class="card_part card_part-two"></div>
+<!-- Photo 3 -->
+<div class="card_part card_part-three"></div>
+<!-- Photo 4 -->
+<div class="card_part card_part-four"></div>
+</div>
+</td>
+<td>
+<ul>
+<!--DETAIL_1-->
+<li class="inline-photo3 show-on-scroll3">
+<h3>MOONG DAL</h3>
+<p>Nutritional Value/30gms</p>
+<a href="#" class="btn2">View Details</a>
+</li>
+<!--DETAIL_2-->
+<li class="inline-photo3 show-on-scroll3">
+<h3>MOONG DAL</h3>
+<p>Nutritional Value/30gms</p>
+<a href="#" class="btn2">View Details</a>
+</li>
+<!--DETAIL_3-->
+<li class="inline-photo3 show-on-scroll3">
+<h3>MOONG DAL</h3>
+<p>Nutritional Value/30gms</p>
+<a href="#" class="btn2">View Details</a>
+
+   imagepath = models.ImageField(null=True,upload_to='images/')
+</li>
+</ul>
+</td>
+</tr>
+</table>
+</section>
+
+
+        Image = req.FILES('Image')
+        Image= req.FILES['myfile']
+        Imagedata(Image=Image.name,imagePath=Image)
+          return render(req,"home1.html",{'path':/media/Image'+Image.name})
+        return render(req,"home1.html",{'msg':'ITEM IS ADDED'})
+
+
+
+
+
+
+https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80
+<img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80" alt="Product Name" class="product-image">

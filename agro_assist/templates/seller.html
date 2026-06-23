@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Shop | Agro Assist{% endblock %}
+
+{% block navbar %}
+<header class="site-header">
+    <div class="container nav-wrap">
+        <a href="{% url 'seller' %}" class="brand">Agro<span>Assist</span></a>
+        <nav class="nav-links">
+            <form method="POST" action="{% url 'search' %}" class="search-inline">
+                {% csrf_token %}
+                <input type="text" name="searched" placeholder="Search products">
+                <button type="submit" class="btn btn-secondary">Search</button>
+            </form>
+            <a href="{% url 'view_cart' %}">Cart</a>
+            <a href="{% url 'order_history' %}">Orders</a>
+            <a href="{% url 'contactus' %}">Contact</a>
+            <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+        </nav>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="hero" style="padding:3rem 0 2rem;">
+    <div class="container">
+        <h1 class="section-title">Fresh marketplace</h1>
+        <p class="section-subtitle">Browse products listed by local farmers.</p>
+    </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+    <div class="container product-grid">
+        {% for product in products %}
+        <article class="product-card">
+            {% if product.imagepath %}
+            <img src="{{ product.imagepath.url }}" alt="{{ product.name }}">
+            {% else %}
+            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80" alt="Fresh produce">
+            {% endif %}
+            <div class="product-body">
+                <h3>{{ product.name }}</h3>
+                <p class="meta">Quantity: {{ product.quantity }} kg</p>
+                <p class="price">₹{{ product.price }}</p>
+                <a href="{% url 'cart' product.name product.price %}" class="btn btn-primary" style="width:100%;">Add to cart</a>
+            </div>
+        </article>
+        {% empty %}
+        <div class="panel">
+            <h3>No products yet</h3>
+            <p>Sellers have not listed any items. Please check back soon.</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

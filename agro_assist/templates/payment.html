@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Payment | Agro Assist{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container" style="max-width:520px;">
+        <div class="panel" style="text-align:center;">
+            <h1 class="section-title">Complete payment</h1>
+            <p class="section-subtitle">Total amount: ₹<span id="total-amount">{{ total_price }}</span></p>
+            {% if RAZORPAY_KEY_ID %}
+            <button type="button" class="btn btn-primary" onclick="makePayment()">Pay now</button>
+            {% else %}
+            <div class="alert alert-error">Razorpay is not configured. Set RAZORPAY_KEY_ID in your environment.</div>
+            <a href="{% url 'order' %}" class="btn btn-secondary">Continue</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function makePayment() {
+    fetch('/get_cart_total/')
+        .then(response => response.json())
+        .then(data => {
+            const totalAmount = Math.round(Number(data.total_amount) * 100);
+            return fetch('/create_order/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: 'amount=' + totalAmount
+            });
+        })
+        .then(response => response.json())
+        .then(order => {
+            if (order.error) {
+                alert(order.error);
+                return;
+            }
+            const options = {
+                key: '{{ RAZORPAY_KEY_ID }}',
+                amount: order.amount,
+                currency: order.currency,
+                order_id: order.id,
+                name: 'Agro Assist',
+                handler: function (response) {
+                    fetch('/verify_payment/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: `razorpay_payment_id=${response.razorpay_payment_id}&razorpay_order_id=${response.razorpay_order_id}&razorpay_signature=${response.razorpay_signature}`
+                    })
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result.status === 'success') {
+                            window.location.href = result.redirect || '/order/';
+                        } else {
+                            alert('Payment failed.');
+                        }
+                    });
+                }
+            };
+            new Razorpay(options).open();
+        });
+}
+</script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Reports | Agro Assist{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Orders and listings</h1>
+        <div class="panel" style="margin-bottom:1.5rem;">
+            <h3>Customer orders</h3>
+            <ul>
+                {% for row in user_data %}
+                <li>{{ row.yourname }} — {{ row.product_name }} — ₹{{ row.total_price }}</li>
+                {% empty %}
+                <li>No order records.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="panel">
+            <h3>Product listings</h3>
+            <ul>
+                {% for item in items_info %}
+                <li>{{ item.item_name }} by {{ item.seller_name }} at {{ item.location }}</li>
+                {% empty %}
+                <li>No items listed.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

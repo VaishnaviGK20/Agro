@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Verify Reset OTP | Agro Assist{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<section class="auth-page">
+    <div class="auth-card">
+        <h1>Verify reset OTP</h1>
+        {% if msg %}<div class="alert alert-error">{{ msg }}</div>{% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="otp">OTP</label>
+                <input type="text" name="otp" id="otp" maxlength="6" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Verify</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block footer %}{% endblock %}

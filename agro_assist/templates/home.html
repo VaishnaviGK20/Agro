@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Agro Assist | Fresh Farm Groceries{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-grid">
+        <div>
+            <h1>Fresh groceries, straight from the farm.</h1>
+            <p>Agro Assist connects farmers and customers with fair prices, doorstep delivery, and zero middleman commission.</p>
+            <div class="hero-actions">
+                <a href="{% url 'register' %}" class="btn btn-primary">Get Started</a>
+                <a href="{% url 'login' %}" class="btn btn-secondary">Sign In</a>
+            </div>
+        </div>
+        <div class="hero-card">
+            <h3>Why Agro Assist?</h3>
+            <ul>
+                <li>100% fresh produce from verified sellers</li>
+                <li>Direct farmer-to-customer pricing</li>
+                <li>Secure checkout with COD or online payment</li>
+                <li>Email OTP verification for safe registration</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Shop by category</h2>
+        <p class="section-subtitle">Organic pulses, cereals, nuts, and more.</p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Pulses</h3>
+                <p>Protein-rich staples sourced directly from local farms.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Cereals</h3>
+                <p>Wholesome grains packed fresh for your kitchen.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Nuts & Seeds</h3>
+                <p>Premium quality dry fruits with transparent pricing.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container hero-card">
+        <h2 class="section-title">How we work</h2>
+        <ol>
+            <li>Farmers list fresh products with quantity and price.</li>
+            <li>Customers browse, add to cart, and place orders.</li>
+            <li>We deliver to your doorstep with order confirmation by email.</li>
+        </ol>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Search | Agro Assist{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Search results{% if search %} for "{{ search }}"{% endif %}</h1>
+        <div class="product-grid">
+            {% for product in products %}
+            <article class="product-card">
+                {% if product.imagepath %}
+                <img src="{{ product.imagepath.url }}" alt="{{ product.name }}">
+                {% endif %}
+                <div class="product-body">
+                    <h3>{{ product.name }}</h3>
+                    <p class="meta">{{ product.quantity }} kg</p>
+                    <p class="price">₹{{ product.price }}</p>
+                    <a href="{% url 'cart' product.name product.price %}" class="btn btn-primary" style="width:100%;">Add to cart</a>
+                </div>
+            </article>
+            {% empty %}
+            <div class="panel">No products found.</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

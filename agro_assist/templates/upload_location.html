@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload Location | Agro Assist{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container" style="max-width:720px;">
+        <h1 class="section-title">Seller location</h1>
+        {% if error %}<div class="alert alert-error">{{ error }}</div>{% endif %}
+        <div class="panel">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group"><label for="house_number">House number</label><input type="text" name="house_number" id="house_number" required></div>
+                <div class="form-group"><label for="cross_and_main">Cross and main</label><input type="text" name="cross_and_main" id="cross_and_main" required></div>
+                <div class="form-group"><label for="area">Area</label><input type="text" name="area" id="area" required></div>
+                <div class="form-group"><label for="district">District</label><input type="text" name="district" id="district" required></div>
+                <div class="form-group"><label for="pincode">Pincode</label><input type="text" name="pincode" id="pincode" required></div>
+                <button type="submit" class="btn btn-primary">Save and continue</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

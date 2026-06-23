@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Cart | Agro Assist{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Shopping cart</h1>
+
+        {% if disable_button %}
+        <div class="alert alert-error">No items selected.</div>
+        {% endif %}
+
+        <div class="cart-summary">
+            {% for name, price in Product %}
+            <div class="cart-item">
+                <div>
+                    <strong>{{ name }}</strong>
+                    <div class="meta">₹{{ price }}</div>
+                </div>
+                <a href="{% url 'delete_cart' name %}" class="btn btn-danger">Remove</a>
+            </div>
+            {% empty %}
+            <div class="panel">Your cart is empty. <a href="{% url 'seller' %}">Continue shopping</a></div>
+            {% endfor %}
+        </div>
+
+        <div class="panel" style="margin-top:1.5rem;">
+            <h3>Total: ₹{{ sum }}</h3>
+            {% if not disable_button %}
+            <a href="{% url 'info' %}?products={{ ProductNames|join:',' }}&total={{ sum }}" class="btn btn-primary">Place order</a>
+            {% else %}
+            <button class="btn btn-secondary" disabled>No items selected</button>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

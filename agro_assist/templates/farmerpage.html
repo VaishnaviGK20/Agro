@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Farmer Dashboard | Agro Assist{% endblock %}
+
+{% block content %}
+<section class="hero" style="padding:3rem 0 2rem;">
+    <div class="container">
+        <h1 class="section-title">Farmer dashboard</h1>
+        <p class="section-subtitle">Manage your location, products, and listings.</p>
+        <div class="hero-actions">
+            <a href="{% url 'upload_location' %}" class="btn btn-primary">Set pickup location</a>
+            <a href="{% url 'home1' %}" class="btn btn-secondary">Manage products</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

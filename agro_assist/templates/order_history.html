@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Order History | Agro Assist{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Your orders</h1>
+        <div class="order-list">
+            {% for order in orders %}
+            <div class="order-item">
+                <div>
+                    <strong>{{ order.product_name }}</strong>
+                    <div class="meta">₹{{ order.price }}</div>
+                    {% if order.location %}<div class="meta">{{ order.location }}</div>{% endif %}
+                    {% if order.order_date %}<div class="meta">{{ order.order_date }}</div>{% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="panel">No orders placed yet. <a href="{% url 'seller' %}">Start shopping</a></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
